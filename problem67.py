@@ -24,10 +24,11 @@ years to check them all. There is an efficient algorithm to
 solve it. ;o)
 
 """
+from projecteuler import open_data_file
 
 sumlist = [0]*200
 
-f = open('triangle.txt', 'r')
+f = open_data_file('triangle.txt')
 for line in f:
 	i = 0
 	cells = line.split()

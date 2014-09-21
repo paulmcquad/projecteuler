@@ -2,6 +2,7 @@
 #!/usr/bin/env python
 import os
 from string import ascii_uppercase
+from projecteuler import open_data_file
 
 def letter_value(letter):
     return ascii_uppercase.index(letter.upper())+1
@@ -14,7 +15,7 @@ def triangle(n):
 
 def main():
     triangle_numbers = [triangle(n) for n in range(1, 100)]
-    words = [word.strip('"') for word in open(os.path.join(os.path.dirname(__file__), 'words.txt')).read().split(',')]
+    words = [word.strip('"') for word in open_data_file(os.path.join(os.path.dirname(__file__), 'words.txt')).read().split(',')]
     total = 0
     for word in words:
         if word_value(word) in triangle_numbers:

@@ -3,6 +3,7 @@
 # Platform = win32
  
 from collections import Counter
+from projecteuler import open_data_file
  
 d = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, \
      '7': 7, '8': 8, '9': 9, 'T': 10, 'J': 11, 'Q': 12, \
@@ -186,7 +187,7 @@ def examine_cards(cards):
 def main():
     """Main Program"""
     player1 = 0
-    f = open('poker.txt', 'r')
+    f = open_data_file('poker.txt')
     for line in f:
         x = line.split(' ')
         y = ''.join(x)

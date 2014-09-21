@@ -1,5 +1,6 @@
 #!/usr/bin/env python
- 
+
+from projecteuler import open_data_file
 import time
  
 # define a recursive function to create partial sums by row
@@ -15,7 +16,8 @@ def recSumAtRow(rowData, rowNum):
  
 # read in the data
 rows = []
-with open('problem-18-data') as f:
+with open_data_file("problem-18-data") as f:
+	
     for line in f:
         rows.append([int(i) for i in line.rstrip('\n').split(" ")])
  

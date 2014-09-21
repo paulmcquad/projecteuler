@@ -1,3 +1,6 @@
+
+from projecteuler import open_data_file
+
 # This function takes a name / password and returns its text value 
 def name_score ( name ): 
     score =  0 
@@ -8,8 +11,7 @@ def name_score ( name ):
         # a letter to get its position in the alphabet 
         score += ord ( i )  -  64 
     return score
-
-file = open ( "022_names.txt" ,  "r" ) 
+file = open_data_file("022_names.txt")
 #Lecture names the file and generate a list of names 
 names = list ( eval ( file . read ())) 
 file . close ()
