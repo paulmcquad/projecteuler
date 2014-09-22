@@ -4,6 +4,27 @@ import os
 from math import sqrt, factorial
 from functools import reduce
 
+def factor(n):
+    if n in [-1, 0, 1]: return []
+    if n < 0: n = -n
+    F = []
+    while n != 1:
+        p = trial_division(n)
+        e = 1
+        n /= p
+        while n%p == 0:
+            e += 1; n /= p
+        F.append((p,e))
+    F.sort()
+    return F
+
+def sos_digits(n): #sum of squares of the digits of an integer by Po
+  s=0
+  while n:
+    s+=(n%10)**2
+    n=n//10
+  return s
+
 def open_data_file(filename):
     f = open(os.path.join(os.path.dirname(__file__), "data", filename))
     return f
@@ -228,3 +249,45 @@ def convergent_fractions(quotients):
         yield num, den
         q = next(quotients)
         prev_num, num, prev_den, den = num, prev_num + num*q, den, prev_den + den*q
+
+# Copyright (c) 2010 the authors listed at the following URL, and/or
+# the authors of referenced articles or incorporated external code:
+# http://en.literateprograms.org/Miller-Rabin_primality_test_(Python)?action=history&offset=20101013093632
+def miller_rabin_pass(a, s, d, n):
+  a_to_power = pow(a, d, n)
+  if a_to_power == 1:
+    return True
+  for i in range(s-1):
+    if a_to_power == n - 1:
+      return True
+    a_to_power = (a_to_power * a_to_power) % n
+  return a_to_power == n - 1
+ 
+def miller_rabin(n):
+  d = n - 1
+  s = 0
+  while d % 2 == 0:
+    d >>= 1
+    s += 1
+  for repeat in range(20):
+    a = 0
+    while a == 0:
+      a = random.randrange(n)
+    if not miller_rabin_pass(a, s, d, n):
+      return False
+  return True
+
+def trial_division(n, bound=None):
+    if n == 1: return 1
+    for p in [2, 3, 5]:
+        if n%p == 0: return p
+    if bound == None: bound = n
+    dif = [6, 4, 2, 4, 2, 4, 6, 2]
+    m = 7; i = 1
+    while m <= bound and m*m <= n:
+        if n%m == 0:
+            return m
+        m += dif[i%8]
+        i += 1
+    return n
+
