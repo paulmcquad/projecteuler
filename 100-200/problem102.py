@@ -1,42 +1,35 @@
-#https://github.com/Urinx/Project_Euler_Answers
-#!/usr/bin/env python
-#coding:utf-8
+#http://blog.singhanuvrat.com/problems/project-euler-problem-102-triangle-containment
 
-"""
-Triangle containment
+'''
+Created on May 22, 2014
 
-Three distinct points are plotted at random on a Cartesian plane, for which -1000 ≤ x, y ≤ 1000, such that a triangle is formed.
-Consider the following two triangles:
-A(-340,495), B(-153,-910), C(835,-947)
-X(-175,41), Y(-421,-714), Z(574,-645)
-It can be verified that triangle ABC contains the origin, whereas triangle XYZ does not.
-Using triangles.txt (right click and 'Save Link/Target As...'), a 27K text file containing the co-ordinates of one thousand "random" triangles, find the number of triangles for which the interior contains the origin.
-NOTE: The first two examples in the file represent the triangles in the example given above.
+@author: anuvrat
+'''
 
-"""
-from projecteuler import open_data_file
+from collections import namedtuple
+import math
 
-def CrossProduct(A,B):
-	return A[0]*B[1]-A[1]*B[0]
+filename = 'data/pb102triangles.txt'
 
-def answer():
-	with open_data_file('pb102triangles.txt') as f:
-		total=0
-		for line in f.readlines():
-			dot=[int(n) for n in line.replace('\n','').split(',')]
-			OA=dot[:2]
-			OB=dot[2:4]
-			OC=dot[4:]
-			a=CrossProduct(OA,OB)
-			b=CrossProduct(OB,OC)
-			c=CrossProduct(OC,OA)
-			if (a>0 and b>0 and c>0) or (a<0 and b<0 and c<0):
-				total+=1
-		print total
+Point = namedtuple('Point', ['x', 'y'])
 
-import time
-tStart=time.time()
-answer()
-print 'run time=',time.time()-tStart
-# 228
-# run time= 0.0154139995575
+def area_of_triangle(p1, p2, p3):
+    return math.fabs((p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)) * 0.5)
+
+origin = Point(0, 0)
+interior_origin_triangles = 0
+with open(filename) as f:
+    for line in f:
+        coordinates = map(int, line.split(','))
+        
+        p = []
+        for i in xrange(0, 6, 2): p.append(Point(coordinates[i], coordinates[i+1]))
+        
+        area = []
+        for i in xrange(3): area.append(area_of_triangle(p[i], p[(i+1) % 3], origin))
+        
+        area_triangle = area_of_triangle(p[0], p[1], p[2])
+        
+        if sum(area) == area_triangle: interior_origin_triangles += 1
+
+print(interior_origin_triangles)

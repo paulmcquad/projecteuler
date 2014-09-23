@@ -2,11 +2,12 @@
 #!/usr/bin/env python
 #coding:utf-8
 
+
 """
 Special subset sums: optimum
 
 Let S(A) represent the sum of elements in set A of size n. We shall call it a special sum set if for any two non-empty disjoint subsets, B and C, the following properties are true:
-S(B) ≠ S(C); that is, sums of subsets cannot be equal.
+S(B) is not equal to S(C); that is, sums of subsets cannot be equal.
 If B contains more elements than C then S(B) > S(C).
 If S(A) is minimised for a given n, we shall call it an optimum special sum set. The first five optimum special sum sets are given below.
 
@@ -22,6 +23,8 @@ Given that A is an optimum special sum set for n = 7, find its set string.
 NOTE: This problem is related to Problem 105 and Problem 106.
 
 """
+
+
 import itertools
 
 def check(s):
@@ -31,7 +34,7 @@ def check(s):
 		if sum(s[:k])<=sum(s[-k+1:]):
 			return False
 		k+=1
-	# S(B)≠S(C)
+	# S(B) is not equal S(C)
 	for i in xrange(2,len(s)-1):
 		tmp=[]
 		for j in itertools.combinations(s,i):
