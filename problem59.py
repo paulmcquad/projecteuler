@@ -5,6 +5,7 @@ from itertools import *
 from string import *
 from collections import defaultdict
 from operator import itemgetter
+from projecteuler import open_data_file
 
 dictionary = set(word.strip() for word in open('/usr/share/dict/words').readlines())
 
@@ -35,7 +36,7 @@ def is_english(plaintext):
     return False
 
 def main():
-    cipher = [int(c) for c in open(os.path.join(os.path.dirname(__file__), 'cipher.txt')).read().strip().split(',')]
+    cipher = [int(c) for c in open_data_file('pb59cipher.txt').read().strip().split(',')]
 
     candidates = ascii_lowercase
 

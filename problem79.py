@@ -38,7 +38,7 @@ def getAvailableDigits(logincode):
 
 # sort passcode
 def main():
-	logincode = readLogincode('keylog.txt')
+	logincode = readLogincode('data/keylog.txt')
 	passcode = getAvailableDigits(logincode)
 	codelength = 3
 	for code in logincode:
