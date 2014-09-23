@@ -1,3 +1,6 @@
+#other
+#https://sites.google.com/site/projecteulerwithmatlab/problems/problems-90-99/problem-96
+#
 #https://github.com/OLIMEX/WPC/blob/master/ISSUE-28/SOLUTION-3/sudoku03.py
 #24702
 from itertools import product
