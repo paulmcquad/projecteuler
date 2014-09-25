@@ -34,13 +34,22 @@ num = '\
 
 biggest = 0
 i = 0
-while i < len(num) - 4:
+while i < len(num) - 12:
     one = int(num[i]) 
     two = int(num[i+1])  
     thr = int(num[i+2]) 
     fou = int(num[i+3])
     fiv = int(num[i+4])
-    product = one*two*thr*fou*fiv
+    six = int(num[i+5])
+    seven = int(num[i+6])
+    eight = int(num[i+7])
+    nine = int(num[i+8])
+    ten = int(num[i+9])
+    eleven = int(num[i+10])
+    twelve = int(num[i+11])
+    thirteen = int(num[i+12])
+
+    product = one*two*thr*fou*fiv*six*seven*eight*nine*ten*eleven*twelve*thirteen
     if product > biggest:
         biggest = product
     i += 1 
@@ -48,3 +57,5 @@ print(biggest)
 
 elapsed = (time.time() - start)
 print("This code took: " + str(elapsed) + " seconds")
+
+#23514624000

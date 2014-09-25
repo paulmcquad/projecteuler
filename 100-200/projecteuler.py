@@ -154,6 +154,9 @@ def is_palindrome(n, base):
         t //= base
     return r == n
 
+def is_palindromic(n):
+    return n == int(str(n)[::-1])
+
 # checks if a number is x to y pandigital
 # the function doesn't check for redundant digits
 def is_pandigital(n, end=9, start=1):
@@ -337,4 +340,43 @@ def binomial_app(n, k):
         return m.exp(pw)
     else:
         return "exp(%d)"%pw
+
+def expt_mul(a, b):
+    r = 1
+    for i in xrange(b):
+        r *= a
+    return r
+
+def expt_rec(a, b):
+    if b == 0:
+        return 1
+    elif b % 2 == 1:
+        return a * expt_rec(a, b - 1)
+    else:
+        p = expt_rec(a, b / 2)
+        return p * p
+
+def expt_bin_rl(a, b):
+    r = 1
+    while 1:
+        if b % 2 == 1:
+            r *= a
+        b /= 2
+        if b == 0:
+            break
+        a *= a
+
+    return r
+
+def _bits_of_n(n):
+    """ Return the list of the bits in the binary
+        representation of n, from LSB to MSB
+    """
+    bits = []
+
+    while n:
+        bits.append(n % 2)
+        n /= 2
+
+    return bits
 
