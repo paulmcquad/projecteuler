@@ -4,6 +4,15 @@ import os
 from math import sqrt, factorial
 from functools import reduce
 
+def timer(func):
+    def wrapped(*args, **kwargs):
+        from time import time
+        t = time()
+        ans = func(*args, **kwargs)
+        print('Time: %s' %(time()-t))
+        return ans
+    return wrapped
+
 def factor(n):
     if n in [-1, 0, 1]: return []
     if n < 0: n = -n
