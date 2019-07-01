@@ -1,3 +1,4 @@
+# Problem 158
 #http://wiki.san-ss.com.ar/project-euler-problem-158
 factorial = {0:1}
 for i in range(1, 27):

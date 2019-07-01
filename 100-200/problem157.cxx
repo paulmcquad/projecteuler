@@ -1,3 +1,7 @@
+// Problem 157 - Solving the diophantine equation 1/a+1/b= p/10n
+//
+// https://github.com/Meng-Gen/ProjectEuler/blob/master/157.cc
+
 #include <iostream>
 #include <set>
 #include <vector>
