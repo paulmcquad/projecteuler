@@ -9,7 +9,10 @@
  * 
  * Find the smallest integer that can be the length of a cathetus of exactly
  * 47547 different integer sided right-angled triangles.
+ *
+ *  https://github.com/aks47u/Project-Euler/blob/master/Solved_176_200/Problem-176/PE176_Right_angled_triangles_that_share_a_cathetus.java
  */
+
 public class problem176 {
 	private static int[] c;
 	private static int[] x;
